@@ -1,0 +1,63 @@
+name: Lint & Check
+
+# Server kedua untuk cek error: kompilasi + lint + unit test TANPA build APK.
+# Jauh lebih cepat dari Android CI penuh karena melewati dexing & packaging,
+# jadi cocok untuk iterasi perbaikan/optimasi.
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Compile · Lint · Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # Kompilasi Kotlin (app + unit test + instrumented test) — menangkap error
+      # kompilasi paling cepat, termasuk kode androidTest, tanpa perlu emulator.
+      - name: Compile Kotlin
+        run: ./gradlew compileDebugKotlin compileDebugUnitTestKotlin compileDebugAndroidTestKotlin
+
+      # Lint Android: deprecation, potensi bug, resource. Tak menggagalkan build
+      # otomatis di sini — laporan diunggah agar bisa ditinjau.
+      - name: Run Lint
+        run: ./gradlew lintDebug
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Upload Lint Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-report
+          path: app/build/reports/lint-results-debug.html
+          retention-days: 7
+
+      - name: Upload Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-report
+          path: app/build/reports/tests/testDebugUnitTest/
+          retention-days: 7

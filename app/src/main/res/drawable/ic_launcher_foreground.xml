@@ -1,0 +1,45 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Custom 3D Shadow -->
+    <path
+        android:fillColor="#15000000"
+        android:pathData="M 37,27 L 65,27 L 77,39 L 77,91 L 37,91 Z" />
+        
+    <!-- Document Base Sheet -->
+    <path
+        android:fillColor="#107C41"
+        android:pathData="M 34,24 L 62,24 L 74,36 L 74,88 L 34,88 Z" />
+        
+    <!-- Top-Right Fold Corner Flap -->
+    <path
+        android:fillColor="#1F9A55"
+        android:pathData="M 62,24 L 62,36 L 74,36 Z" />
+        
+    <!-- Spreadsheet Grid Accent lines (White / Light Green) -->
+    <!-- Column divider line -->
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:pathData="M 46,42 L 48,42 L 48,80 L 46,80 Z" />
+    <path
+        android:fillColor="#4DFFFFFF"
+        android:pathData="M 58,42 L 60,42 L 60,80 L 58,80 Z" />
+
+    <!-- Grid Horizontal Rows -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 40,46 L 68,46 L 68,48 L 40,48 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 40,56 L 68,56 L 68,58 L 40,58 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 40,66 L 68,66 L 68,68 L 40,68 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 40,76 L 68,76 L 68,78 L 40,78 Z" />
+
+</vector>

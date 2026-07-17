@@ -1,0 +1,6 @@
+{
+  "name": "Excel Reader",
+  "description": "Buka, lihat, urutkan, saring spreadsheet Excel & CSV secara offline, dan ekspor lembar kerja ke format PDF Vektor, PNG, atau WebP berkualitas tinggi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
