@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/java:17-bookworm
+FROM mcr.microsoft.com/devcontainers/java:21-bookworm
 
 # 1. Install dependencies esensial untuk Android SDK & Kotlin
 RUN apt-get update && apt-get install -y wget unzip usbutils && rm -rf /var/lib/apt/lists/*
